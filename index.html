@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+        #container div {
+            border: 1px black solid;
+            aspect-ratio: 1/1;
+        }
+        /* #container div:hover {
+            background-color: blue;
+        } */
+        button{
+            padding: 20px;
+        }
+      
+    </style>
+</head>
+
+<body>
+    <button id="btn">Change Nr. of Squares</button>
+    <container id="container">
+    </container>
+</body>
+
+<script>
+
+    const content = document.querySelector('#container');
+    const button = document.querySelector('#btn');
+
+
+    let nr = 16;
+
+    function drawSquares(nr) {
+            for (j=0;j<nr;j++) {
+                for (i=0;i<nr;i++) {
+                const div = document.createElement('div');
+                div.setAttribute('id', 'square');
+                flex = parseFloat(100/nr-0.3) + '%';
+                div.style.flexBasis = flex;
+                div.addEventListener('mouseover', function (e) {
+                e.target.style.background = "blue";
+            });
+                content.appendChild(div);
+                }
+            }
+        };
+
+    drawSquares(nr);
+
+    
+
+    function askNumber() {
+            let number = prompt('How many squares per line should it be?');
+            const squareList = document.querySelectorAll('#square');
+            for (let i = 0; i< squareList.length; i++) {
+                squareList[i].remove();
+            }
+            drawSquares(number);
+        };
+
+  
+    button.addEventListener('click', askNumber);
+
+    
+
+  
+
+</script>
+
+</html>
